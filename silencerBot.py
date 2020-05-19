@@ -24,4 +24,4 @@ async def on_message(message):
         for i in 'quiet':
             await message.add_reaction(indicators[i])
         await message.author.ban
-client.run('NzEyMzU2MTY5MjE3NDc0NjUw.XsQXtQ.xemct44hjcAYru8bCEWXmFwTMZo')
+client.run('')
