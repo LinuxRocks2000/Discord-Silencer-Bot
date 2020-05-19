@@ -33,12 +33,15 @@ async def on_ready():
     await client.change_presence(activity=discord.Game(name="be quiet."))
 @client.event
 async def on_message(message):
+    if message.author==client.user:
+        return
     if message.content.startswith('tsb!'):
-        if message.content.startswith('tsb!perms'):
+        args=message.content.split()
+        if args[1]=="perms":
             await message.channel.send('I have the permissions: '+str(isTrue(makeDict(iter((message.channel.permissions_for(message.channel.guild.me)))))))
         else:
             await message.channel.send("That's not a thing.")
-    elif not message.author.bot and not hasRole('The Silent Few',message.author.roles) and message.author!=client.user and not (message.content.startswith('*') and message.content[1]!='*' and not message.content[-2] in ['\\','*'] and message.content[-1]=='*'):
+    elif not message.author.bot and not hasRole('The Silent Few',message.author.roles) and not (message.content.startswith('*') and message.content[1]!='*' and not message.content[-2] in ['\\','*'] and message.content[-1]=='*'):
         await message.channel.send(message.author.name+' was silenced.')
         for i in 'quiet':
             await message.add_reaction(indicators[i])
