@@ -24,4 +24,4 @@ async def on_message(message):
         for i in 'quiet':
             await message.add_reaction(indicators[i])
         await message.author.ban
-client.run('')
+client.run(input('What is your bot token?'))
